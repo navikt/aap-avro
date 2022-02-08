@@ -20,7 +20,8 @@ jobs:
 #        with:
 #          arguments: assemble --no-daemon
 
-
+      - run: echo "$(git fetch || true && git rev-list --count $GITHUB_SHA)"
+        continue-on-error: true
       - run: echo $(git fetch && git rev-list --all --count)
         continue-on-error: true
       - run: echo "$(git rev-list --all --count)"
