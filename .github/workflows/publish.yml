@@ -10,17 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'temurin'
-          check-latest: true
-      - uses: gradle/wrapper-validation-action@v1
-      - uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assemble --no-daemon
+#      - uses: actions/setup-java@v2
+#        with:
+#          java-version: 17
+#          distribution: 'temurin'
+#          check-latest: true
+#      - uses: gradle/wrapper-validation-action@v1
+#      - uses: gradle/gradle-build-action@v2
+#        with:
+#          arguments: assemble --no-daemon
+
+      - run: echo ${git rev-list --all --count}
+      - run: echo "${git rev-list --all --count}"
+      - run: echo "${git rev-list --all --count}"
+      - run: echo 1.0.${git rev-list --all --count}
+      - run: echo "1.0.${git rev-list --all --count}"
+
       - name: upload artifact
-        run: ./gradlew -Pversion="1.0.${git rev-list --all --count}" publish
-        env:
-          GITHUB_USERNAME: x-access-token
-          GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+#        run: ./gradlew -Pversion="1.0.${git rev-list --all --count}" publish
+#        env:
+#          GITHUB_USERNAME: x-access-token
+#          GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
