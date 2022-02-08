@@ -1,0 +1,10 @@
+@namespace("no.nav.aap.domene.avro.v1")
+protocol SøkerV1 {
+	import idl "sak.avdl";
+
+	record Søker {
+		string personident;
+		date fødselsdato;
+		array<Sak> saker;
+	}
+}

@@ -1,0 +1,12 @@
+@namespace("no.nav.aap.domene.avro.v1")
+protocol SakV1 {
+	import idl "vilkårsvurdering.avdl";
+
+	enum Tilstand {START, SØKNAD_MOTTATT, IKKE_OPPFYLT, BEREGN_INNTEKT}
+
+	record Sak {
+		array<Vilkårsvurdering> vilkårsvurderinger;
+		date vurderingsdato;
+		Tilstand tilstand;
+	}
+}

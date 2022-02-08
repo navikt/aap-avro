@@ -1,0 +1,11 @@
+@namespace("no.nav.aap.domene.avro.v1")
+protocol VilkårsvurderingV1 {
+	enum Ledd {LEDD_1, LEDD_2}
+
+	enum Paragraf {PARAGRAF_11_2, PARAGRAF_11_4, PARAGRAF_11_5}
+
+	record Vilkårsvurdering {
+		Paragraf paragraf;
+		array<Ledd> ledd;
+	}
+}
