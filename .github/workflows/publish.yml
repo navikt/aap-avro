@@ -20,11 +20,19 @@ jobs:
 #        with:
 #          arguments: assemble --no-daemon
 
-      - run: echo ${git rev-list --all --count}
+      - run: echo ${git fetch || true && git rev-list --all --count}
+        continue-on-error: true
+
+      - run: echo ${git fetch && git rev-list --all --count}
+        continue-on-error: true
       - run: echo "${git rev-list --all --count}"
+        continue-on-error: true
       - run: echo "${git rev-list --all --count}"
+        continue-on-error: true
       - run: echo 1.0.${git rev-list --all --count}
+        continue-on-error: true
       - run: echo "1.0.${git rev-list --all --count}"
+        continue-on-error: true
 
 #      - name: upload artifact
 #        run: ./gradlew -Pversion="1.0.${git rev-list --all --count}" publish
