@@ -1,4 +1,4 @@
-@namespace("no.nav.aap.domene.avro.v1")
+@namespace("no.nav.aap.avro.vedtak.v1")
 protocol VilkårsvurderingV1 {
 	enum Ledd {LEDD_1, LEDD_2}
 

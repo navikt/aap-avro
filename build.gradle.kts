@@ -4,17 +4,17 @@ import com.github.davidmc24.gradle.plugin.avro.GenerateAvroSchemaTask
 
 plugins {
     `java-library`
+    `maven-publish`
     id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
 }
 
-repositories {
-    maven("https://github-package-registry-mirror.gc.nav.no/cached/maven-release")
-    mavenCentral()
+dependencies {
+    api("org.apache.avro:avro:1.11.0")
 }
 
 tasks {
     val generateProtocol = task("generateProtocol", GenerateAvroProtocolTask::class) {
-        source("main/no/nav/aap/avro")
+        source("main")
         setOutputDir(file("$buildDir/generated/avpr"))
     }
 
@@ -37,9 +37,46 @@ tasks {
     }
 }
 
-dependencies {
-    api("org.apache.avro:avro:1.11.0")
-}
-
 java.sourceSets["main"].java.srcDirs("main")
 sourceSets["main"].java.srcDirs("build/generated/avro")
+
+group = "no.nav.aap"
+version = "${project.version}"
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/navikt/aap-avroskjema")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_PASSWORD")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("mavenJava") {
+            pom {
+                name.set("avroskjema")
+                description.set("Avro skjema klasser for AAP")
+                url.set("https://github.com/navikt/aap-avroskjema")
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:https://github.com/navikt/aap-avroskjema.git")
+                    developerConnection.set("scm:git:https://github.com/navikt/aap-avroskjema.git")
+                    url.set("https://github.com/navikt/aap-avroskjema")
+                }
+            }
+            from(components["java"])
+        }
+    }
+}

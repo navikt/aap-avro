@@ -1,4 +1,4 @@
-@namespace("no.nav.aap.domene.avro.v1")
+@namespace("no.nav.aap.avro.vedtak.v1")
 protocol SøkerV1 {
 	import idl "sak.avdl";
 
