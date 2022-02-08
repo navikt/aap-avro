@@ -61,6 +61,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             pom {
                 name.set("avroskjema")
+                artifactId = "avroskjema"
                 description.set("Avro skjema klasser for AAP")
                 url.set("https://github.com/navikt/aap-avroskjema")
                 licenses {
