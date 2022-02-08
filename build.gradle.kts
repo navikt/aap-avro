@@ -42,9 +42,6 @@ java.sourceSets["main"].java.srcDirs("main")
 java.sourceSets["test"].java.srcDirs("test")
 sourceSets["main"].java.srcDirs("build/generated/avro")
 
-group = "no.nav.aap"
-version = "${project.version}"
-
 repositories {
     mavenCentral()
 }
@@ -64,6 +61,7 @@ publishing {
             pom {
                 name.set("avroskjema")
                 artifactId = "avroskjema"
+                groupId = "no.nav.aap"
                 description.set("Avro skjema klasser for AAP")
                 url.set("https://github.com/navikt/aap-avroskjema")
                 licenses {
