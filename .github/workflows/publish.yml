@@ -26,7 +26,7 @@ jobs:
       - run: echo 1.0.${git rev-list --all --count}
       - run: echo "1.0.${git rev-list --all --count}"
 
-      - name: upload artifact
+#      - name: upload artifact
 #        run: ./gradlew -Pversion="1.0.${git rev-list --all --count}" publish
 #        env:
 #          GITHUB_USERNAME: x-access-token
