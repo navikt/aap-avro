@@ -6,7 +6,7 @@ protocol SakV1 {
 
 	record Sak {
 		array<Vilkårsvurdering> vilkårsvurderinger;
-		date vurderingsdato;
+		union{null, date} vurderingsdato;
 		Tilstand tilstand;
 	}
 }
