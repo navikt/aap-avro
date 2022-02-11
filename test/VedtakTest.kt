@@ -1,5 +1,4 @@
 import no.nav.aap.avro.vedtak.v1.Sak
-import no.nav.aap.avro.vedtak.v1.Tilstand
 import org.junit.Test
 
 internal class VedtakTest {
@@ -8,7 +7,7 @@ internal class VedtakTest {
     fun `vurderingsdato kan være null`() {
         Sak.newBuilder()
             .setVurderingsdato(null)
-            .setTilstand(Tilstand.BEREGN_INNTEKT)
+            .setTilstand("BEREGN_INNTEKT")
             .setVilkårsvurderinger(listOf())
             .build()
     }

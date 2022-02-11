@@ -2,11 +2,9 @@
 protocol SakV1 {
 	import idl "vilkårsvurdering.avdl";
 
-	enum Tilstand {START, SØKNAD_MOTTATT, IKKE_OPPFYLT, BEREGN_INNTEKT}
-
 	record Sak {
 		array<Vilkårsvurdering> vilkårsvurderinger;
 		union{null, date} vurderingsdato;
-		Tilstand tilstand;
+		string tilstand;
 	}
 }
