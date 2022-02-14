@@ -1,8 +1,14 @@
 @namespace("no.nav.aap.avro.vedtak.v1")
 protocol VilkårsvurderingV1 {
+	record Løsning_11_2 {
+		string erMedlem;
+	}
+
 	record Vilkårsvurdering {
 		string paragraf;
 		array<string> ledd;
 		string tilstand;
+		union{null, Løsning_11_2} løsning_11_2_manuell = null;
+		union{null, Løsning_11_2} løsning_11_2_maskinell = null;
 	}
 }
