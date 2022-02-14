@@ -2,6 +2,7 @@
 protocol VilkårsvurderingV1 {
 	record Vilkårsvurdering {
 		string paragraf;
+		string tilstand;
 		array<string> ledd;
 	}
 }
