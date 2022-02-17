@@ -1,10 +1,10 @@
 @namespace("no.nav.aap.avro.vedtak.v1")
-protocol SøkerV1 {
+protocol SokerV1 {
 	import idl "sak.avdl";
 
-	record Søker {
+	record Soker {
 		string personident;
-		date fødselsdato;
+		date fodselsdato;
 		array<Sak> saker;
 	}
 }

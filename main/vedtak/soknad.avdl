@@ -1,6 +1,6 @@
 @namespace("no.nav.aap.avro.vedtak.v1")
-protocol SøknadV1 {
-	record Søknad {
+protocol SoknadV1 {
+	record Soknad {
 		string personident;
 		boolean arbeidetUtenlands;
 	}

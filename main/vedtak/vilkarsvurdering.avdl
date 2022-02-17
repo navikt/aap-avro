@@ -1,0 +1,14 @@
+@namespace("no.nav.aap.avro.vedtak.v1")
+protocol VilkarsvurderingV1 {
+	record Losning_11_2 {
+		string erMedlem;
+	}
+
+	record Vilkarsvurdering {
+		string paragraf;
+		array<string> ledd;
+		string tilstand;
+		union{null, Losning_11_2} losning_11_2_manuell = null;
+		union{null, Losning_11_2} losning_11_2_maskinell = null;
+	}
+}

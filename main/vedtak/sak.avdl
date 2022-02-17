@@ -1,9 +1,9 @@
 @namespace("no.nav.aap.avro.vedtak.v1")
 protocol SakV1 {
-	import idl "vilkårsvurdering.avdl";
+	import idl "vilkarsvurdering.avdl";
 
 	record Sak {
-		array<Vilkårsvurdering> vilkårsvurderinger;
+		array<Vilkarsvurdering> vilkarsvurderinger;
 		union{null, date} vurderingsdato;
 		string tilstand;
 	}

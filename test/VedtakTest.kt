@@ -8,7 +8,7 @@ internal class VedtakTest {
         Sak.newBuilder()
             .setVurderingsdato(null)
             .setTilstand("BEREGN_INNTEKT")
-            .setVilkårsvurderinger(listOf())
+            .setVilkarsvurderinger(listOf())
             .build()
     }
 }
