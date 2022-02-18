@@ -7,7 +7,7 @@ være utdatert.
 
 ```kotlin
 dependencies {
-    implementation("no.nav.aap:avroskjema:1.0.19")
+    implementation("no.nav.aap:avroskjema:1.0.27")
 }
 
 repositories {
