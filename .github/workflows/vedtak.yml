@@ -3,7 +3,7 @@ name: Vedtak
 on:
   push:
     branches: [ main ]
-    paths: [ 'vedtak/**' ]
+    paths: [ 'vedtak/**', '.github/workflows/vedtak.yml' ]
 
 jobs:
   build-and-publish:

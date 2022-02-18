@@ -3,7 +3,7 @@ name: Medlem
 on:
   push:
     branches: [ main ]
-    paths: [ 'medlem/**' ]
+    paths: [ 'medlem/**', '.github/workflows/medlem.yml' ]
 
 jobs:
   build-and-publish:
