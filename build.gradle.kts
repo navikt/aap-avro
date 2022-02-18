@@ -1,83 +1,11 @@
-import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
-import com.github.davidmc24.gradle.plugin.avro.GenerateAvroProtocolTask
-import com.github.davidmc24.gradle.plugin.avro.GenerateAvroSchemaTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    `maven-publish`
-    kotlin("jvm") version "1.6.10"
-    id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0" apply false
+    kotlin("jvm") version "1.6.10" apply false
+    `java-library` apply true
 }
 
-dependencies {
-    api("org.apache.avro:avro:1.11.0")
-    testImplementation(kotlin("test"))
-}
-
-tasks {
-    val generateProtocol = task("generateProtocol", GenerateAvroProtocolTask::class) {
-        source("main")
-        setOutputDir(file("$buildDir/generated/avpr"))
-    }
-
-    val generateSchema = task("generateSchema", GenerateAvroSchemaTask::class) {
-        dependsOn(generateProtocol)
-        source("$buildDir/generated/avpr")
-        setOutputDir(file("$buildDir/generated/avsc"))
-    }
-
-    val generateAvro = task("generateAvro", GenerateAvroJavaTask::class) {
-        dependsOn(generateSchema)
-        source("$buildDir/generated/avsc")
-        setOutputDir(file("$buildDir/generated/avro"))
-    }
-
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-        source(generateAvro)
-    }
-}
-
-java.sourceSets["main"].java.srcDirs("main")
-java.sourceSets["test"].java.srcDirs("test")
-sourceSets["main"].java.srcDirs("build/generated/avro")
-
-repositories {
-    mavenCentral()
-}
-
-publishing {
+subprojects {
     repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/navikt/aap-avroskjema")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_PASSWORD")
-            }
-        }
-    }
-    publications {
-        create<MavenPublication>("mavenJava") {
-            pom {
-                name.set("avroskjema")
-                artifactId = "avroskjema"
-                groupId = "no.nav.aap"
-                description.set("Avro skjema klasser for AAP")
-                url.set("https://github.com/navikt/aap-avroskjema")
-                licenses {
-                    license {
-                        name.set("MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-
-                scm {
-                    connection.set("scm:git:https://github.com/navikt/aap-avroskjema.git")
-                    developerConnection.set("scm:git:https://github.com/navikt/aap-avroskjema.git")
-                    url.set("https://github.com/navikt/aap-avroskjema")
-                }
-            }
-            from(components["java"])
-        }
+        mavenCentral()
     }
 }

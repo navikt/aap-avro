@@ -1,2 +1,4 @@
-rootProject.name = "aap-avroskjema"
+rootProject.name = "avro"
 
+include("medlem")
+include("vedtak")
