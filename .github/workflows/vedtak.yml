@@ -6,7 +6,7 @@ on:
     paths: [ 'vedtak/**', '.github/workflows/vedtak.yml' ]
 
 jobs:
-  build-and-publish:
+  vedtak:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
