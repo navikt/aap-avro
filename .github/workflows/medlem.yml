@@ -6,7 +6,7 @@ on:
     paths: [ 'medlem/**', '.github/workflows/medlem.yml' ]
 
 jobs:
-  build-and-publish:
+  medlem:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
