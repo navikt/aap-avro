@@ -13,12 +13,12 @@ jobs:
         with:
           fetch-depth: 0 # Used to deduce next version
 
-#      - uses: actions/setup-java@v2
-#        with:
-#          java-version: 17
-#          distribution: 'temurin'
-#          check-latest: true
-#      - uses: gradle/wrapper-validation-action@v1
+      #      - uses: actions/setup-java@v2
+      #        with:
+      #          java-version: 17
+      #          distribution: 'temurin'
+      #          check-latest: true
+      #      - uses: gradle/wrapper-validation-action@v1
 
       - uses: paulhatch/semantic-version@v4.0.3
         id: version
@@ -34,18 +34,19 @@ jobs:
       - run: |
           semver=${semver%"$suffix"}
           echo "VERSION=$(echo $semver)" >> $GITHUB_ENV
-          echo "version: $VERSION"
-          echo "semver: $semver"
-          echo "suffix: $suffix"
+          echo "VER=$($semver%'$suffix')" >> $GITHUB_ENV
         env:
           suffix: -vedtak
           semver: ${{ steps.version.outputs.version }}
 
-      - run: | 
-          echo "version: ${VERSION}"
+      - run: |
+          echo "version: ${{ VERSION }}"
           echo "version: $VERSION"
           echo "version: ${{ env.VERSION }}"
           echo "version: ${{ env.VERSION }}"
+          echo "ver: ${{ VER }}
+          echo "ver: ${ VER }
+          echo "ver: $VER
 
 #      - uses: gradle/gradle-build-action@v2
 #        with:
