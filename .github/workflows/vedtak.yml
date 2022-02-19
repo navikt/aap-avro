@@ -52,7 +52,7 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Publish tag
+      - name: Push tag ${{ steps.next_tag.outputs.version }}
         run: |
           git config --local user.name ${{ github.actor }}
           git tag "${{ steps.next_tag.outputs.version }}"
