@@ -13,12 +13,12 @@ jobs:
         with:
           fetch-depth: 0 # Used to deduce next version
 
-      - uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'temurin'
-          check-latest: true
-      - uses: gradle/wrapper-validation-action@v1
+#      - uses: actions/setup-java@v2
+#        with:
+#          java-version: 17
+#          distribution: 'temurin'
+#          check-latest: true
+#      - uses: gradle/wrapper-validation-action@v1
 
       - uses: paulhatch/semantic-version@v4.0.2
         id: version
@@ -31,9 +31,12 @@ jobs:
           namespace: vedtak
           format: "${major}.${minor}.${patch}"
 
-      - uses: gradle/gradle-build-action@v2
-        with:
-          arguments: vedtak:assemble -Pversion=${{ steps.version.outputs.version }} vedtak:publish --no-daemon
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
+      - run: echo "VERSION=${{ steps.version.outputs.version%"-vedtak" }}" >> $GITHUB_ENV
+      - run : echo $VERSION
+#
+#      - uses: gradle/gradle-build-action@v2
+#        with:
+#          arguments: vedtak:assemble -Pversion=${{ steps.version.outputs.version }} vedtak:publish --no-daemon
+#        env:
+#          GITHUB_ACTOR: ${{ github.actor }}
+#          GITHUB_TOKEN: ${{ github.token }}
