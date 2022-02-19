@@ -32,9 +32,9 @@ jobs:
           format: "${major}.${minor}.${patch}"
 
       - run: |
-          VERSION=${{ steps.version.outputs.version }}
-          VERSION=${VERSION%"-vedtak"}
-          echo "$VERSION" >> GITHUB_ENV
+          SEMVER=${{ steps.version.outputs.version }}
+          SEMVER=${SEMVER%"-vedtak"}
+          echo "VERSION=${SEMVER}" >> GITHUB_ENV
 
       - run: echo ${VERSION}
 
