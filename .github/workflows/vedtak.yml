@@ -33,9 +33,10 @@ jobs:
 
       - run: |
           VERSION=${{ steps.version.outputs.version }}
-          VERSION=${VERSION%"-vedtak"}
-          echo "${VERSION}"
-#
+          echo VERSION=${VERSION%"-vedtak"} >> GITHUB_ENV
+
+      - run: echo ${VERSION}
+
 #      - uses: gradle/gradle-build-action@v2
 #        with:
 #          arguments: vedtak:assemble -Pversion=${{ steps.version.outputs.version }} vedtak:publish --no-daemon
