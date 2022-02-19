@@ -21,7 +21,7 @@ jobs:
       #      - uses: gradle/wrapper-validation-action@v1
 
       - uses: paulhatch/semantic-version@v4.0.3
-        id: version
+        id: next_tag
         with:
           major_pattern: major
           minor_pattern: minor
@@ -32,13 +32,13 @@ jobs:
           format: "${major}.${minor}.${patch}"
 
       - run: |
-          echo "semver: $semver"
+          echo "next_tag: next_tag"
           echo "suffix: $suffix"
-          semver=${semver%"$suffix"}
-          echo "VERSION=$(echo $semver)" >> $GITHUB_ENV
+          semver=${next_tag%"$suffix"}
+          echo "VERSION=$(echo next_tag)" >> $GITHUB_ENV
         env:
           suffix: -vedtak
-          semver: ${{ steps.version.outputs.version }}
+          next_tag: ${{ steps.version.outputs.next_tag }}
 
       - run: |
           echo "version: $VERSION"
