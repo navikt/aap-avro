@@ -32,10 +32,10 @@ jobs:
           format: "${major}.${minor}.${patch}"
 
       - run: |
-          echo "next_tag: next_tag"
+          echo "next_tag: $next_tag"
           echo "suffix: $suffix"
           semver=${next_tag%"$suffix"}
-          echo "VERSION=$(echo next_tag)" >> $GITHUB_ENV
+          echo "VERSION=$(echo $next_tag)" >> $GITHUB_ENV
         env:
           suffix: -vedtak
           next_tag: ${{ steps.version.outputs.next_tag }}
