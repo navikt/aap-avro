@@ -33,7 +33,7 @@ jobs:
 
       - uses: gradle/gradle-build-action@v2
         with:
-          arguments: medlem:assemble -Pversion=${{ steps.version.outputs.version }} publish --no-daemon
+          arguments: medlem:assemble -Pversion=${{ steps.version.outputs.version }} medlem:publish --no-daemon
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
