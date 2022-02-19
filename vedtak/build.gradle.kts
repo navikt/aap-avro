@@ -68,6 +68,12 @@ publishing {
                     developerConnection.set("scm:git:ssh://github.com/navikt/${rootProject.name}.git")
                     url.set("https://github.com/navikt/${rootProject.name}")
                 }
+                developers {
+                    developer {
+                        organization.set("NAV (Arbeids- og velferdsdirektoratet) - The Norwegian Labour and Welfare Administration")
+                        organizationUrl.set("https://www.nav.no")
+                    }
+                }
             }
             from(components["java"])
         }
