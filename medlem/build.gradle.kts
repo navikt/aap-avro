@@ -54,7 +54,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             pom {
                 name.set("medlem")
-                artifactId = "avro-medlem"
+                artifactId = "medlem"
                 description.set("Avro skjema for kommunikasjon mellom aap og LovMe")
                 url.set("https://github.com/navikt/${rootProject.name}")
                 licenses {
