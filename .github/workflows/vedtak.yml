@@ -27,6 +27,7 @@ jobs:
           minor_pattern: "minor"
           bump_each_commit: true
           tag_prefix: ""
+          namespace: vedtak
           change_path: "vedtak"
           format: "${major}.${minor}.${patch}"
 
