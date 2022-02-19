@@ -50,5 +50,5 @@ jobs:
 
       - run: |
           git config --local user.name ${{ github.actor }}
-          git tag "${{ env.semver }}"
+          git tag "${{ steps.next_tag.outputs.version }}"
           git push origin --tags
