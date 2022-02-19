@@ -9,9 +9,10 @@ jobs:
   vedtak:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout with tag history
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # Used to deduce next version
+          fetch-depth: 0
 
       - uses: actions/setup-java@v2
         with:
@@ -21,7 +22,8 @@ jobs:
 
       - uses: gradle/wrapper-validation-action@v1
 
-      - uses: paulhatch/semantic-version@v4.0.3
+      - name: Generate next tag
+        uses: paulhatch/semantic-version@v4.0.3
         id: next_tag
         with:
           major_pattern: major
@@ -32,23 +34,26 @@ jobs:
           namespace: vedtak
           format: "${major}.${minor}.${patch}"
 
-      - run: |
+      - name: Extract semantic version from next tag
+        env:
+          suffix: -vedtak
+          next_tag: ${{ steps.next_tag.outputs.version }}
+        run: |
           echo "next_tag: $next_tag"
           echo "suffix: $suffix"
           semver=${next_tag%"$suffix"}
           echo "semver=$(echo $semver)" >> $GITHUB_ENV
-        env:
-          suffix: -vedtak
-          next_tag: ${{ steps.next_tag.outputs.version }}
 
-      - uses: gradle/gradle-build-action@v2
+      - name: Publish avro schema
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
 
-      - run: |
+      - name: Publish tag
+        run: |
           git config --local user.name ${{ github.actor }}
           git tag "${{ steps.next_tag.outputs.version }}"
           git push origin --tags
