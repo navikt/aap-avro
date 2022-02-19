@@ -32,9 +32,10 @@ jobs:
           format: "${major}.${minor}.${patch}"
 
       - run: |
+          echo "semver: $semver"
+          echo "suffix: $suffix"
           semver=${semver%"$suffix"}
           echo "VERSION=$(echo $semver)" >> $GITHUB_ENV
-          echo "VER=$($semver%'$suffix')" >> $GITHUB_ENV
         env:
           suffix: -vedtak
           semver: ${{ steps.version.outputs.version }}
@@ -42,8 +43,6 @@ jobs:
       - run: |
           echo "version: $VERSION"
           echo "version: ${{ env.VERSION }}"
-          echo "ver: $VER"
-          echo "version: ${{ env.VER }}"
 
 #      - uses: gradle/gradle-build-action@v2
 #        with:
