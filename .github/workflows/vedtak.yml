@@ -44,7 +44,7 @@ jobs:
           semver=${next_tag%"$suffix"}
           echo "semver=$(echo $semver)" >> $GITHUB_ENV
 
-      - name: Publish avro schema
+      - name: Publish avro schema ${{ env.semver }}
         uses: gradle/gradle-build-action@v2
         with:
           arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
