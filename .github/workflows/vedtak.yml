@@ -38,7 +38,7 @@ jobs:
           echo "VERSION=$(echo $next_tag)" >> $GITHUB_ENV
         env:
           suffix: -vedtak
-          next_tag: ${{ steps.version.outputs.next_tag }}
+          next_tag: ${{ steps.next_tag.outputs.version }}
 
       - run: |
           echo "version: $VERSION"
