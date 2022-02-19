@@ -23,12 +23,12 @@ jobs:
       - uses: paulhatch/semantic-version@v4.0.2
         id: version
         with:
-          major_pattern: "major"
-          minor_pattern: "minor"
+          major_pattern: major
+          minor_pattern: minor
           bump_each_commit: true
           tag_prefix: ""
+          change_path: vedtak
           namespace: vedtak
-          change_path: "vedtak"
           format: "${major}.${minor}.${patch}"
 
       - uses: gradle/gradle-build-action@v2
