@@ -53,7 +53,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             pom {
-                name.set("vedtak")
+                name.set("aap.avro-vedtak")
                 artifactId = "vedtak"
                 description.set("Avro skjema for aap domene")
                 url.set("https://github.com/navikt/${rootProject.name}")
