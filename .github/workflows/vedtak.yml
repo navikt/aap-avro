@@ -20,7 +20,7 @@ jobs:
 #          check-latest: true
 #      - uses: gradle/wrapper-validation-action@v1
 
-      - uses: paulhatch/semantic-version@v4.0.2
+      - uses: paulhatch/semantic-version@v4.0.3
         id: version
         with:
           major_pattern: major
