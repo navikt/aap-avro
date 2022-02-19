@@ -27,7 +27,6 @@ jobs:
           minor_pattern: "minor"
           bump_each_commit: true
           tag_prefix: ""
-          namespace: medlem
           change_path: "medlem"
           format: "${major}.${minor}.${patch}"
 
