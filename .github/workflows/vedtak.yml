@@ -35,7 +35,7 @@ jobs:
           echo "next_tag: $next_tag"
           echo "suffix: $suffix"
           semver=${next_tag%"$suffix"}
-          echo "VERSION=$(echo $next_tag)" >> $GITHUB_ENV
+          echo "VERSION=$(echo $semver)" >> $GITHUB_ENV
         env:
           suffix: -vedtak
           next_tag: ${{ steps.next_tag.outputs.version }}
