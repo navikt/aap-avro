@@ -1,11 +1,10 @@
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroProtocolTask
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroSchemaTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `maven-publish`
-    kotlin("jvm")
+    `java-library`
     id("com.github.davidmc24.gradle.plugin.avro")
 }
 
@@ -32,13 +31,15 @@ tasks {
         setOutputDir(file("$buildDir/generated/avro"))
     }
 
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+    withType<JavaCompile> {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
         source(generateAvro)
     }
 }
 
-kotlin.sourceSets["main"].kotlin.srcDirs("main", "$buildDir/generated/avro")
+java.sourceSets["main"].java.srcDirs("main")
+sourceSets["main"].java.srcDirs("$buildDir/generated/avro")
 
 publishing {
     repositories {
