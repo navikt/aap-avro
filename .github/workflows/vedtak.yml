@@ -33,7 +33,7 @@ jobs:
 
       - run: |
           semver=${semver%"$suffix"}
-          echo "VERSION=$(echo $semver)" >> GITHUB_ENV
+          echo "VERSION=$(echo $semver)" >> $GITHUB_ENV
           echo "version: $VERSION"
           echo "semver: $semver"
           echo "suffix: $suffix"
