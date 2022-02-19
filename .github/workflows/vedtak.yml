@@ -33,7 +33,7 @@ jobs:
 
       - run: |
           VERSION=${{ steps.version.outputs.version }}
-          VERSION=${VERSION%"-version"}
+          VERSION=${VERSION%"-vedtak"}
           echo "${VERSION}"
 #
 #      - uses: gradle/gradle-build-action@v2
