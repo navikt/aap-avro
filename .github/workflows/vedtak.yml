@@ -44,9 +44,9 @@ jobs:
           echo "version: $VERSION"
           echo "version: ${{ env.VERSION }}"
           echo "version: ${{ env.VERSION }}"
-          echo "ver: ${{ VER }}
-          echo "ver: ${ VER }
-          echo "ver: $VER
+          echo "ver: ${{ VER }}"
+          echo "ver: ${ VER }"
+          echo "ver: $VER"
 
 #      - uses: gradle/gradle-build-action@v2
 #        with:
