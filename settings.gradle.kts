@@ -1,4 +1,4 @@
-rootProject.name = "aap-avroskjema"
+rootProject.name = "aap-avro"
 
 include("medlem")
 include("vedtak")
