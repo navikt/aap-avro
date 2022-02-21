@@ -1,7 +1,7 @@
 # AAP Avro Skjemaer
 
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.3-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.3)
-[![Generic badge](https://img.shields.io/badge/vedtak-1.1.6-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.6)
+[![Generic badge](https://img.shields.io/badge/vedtak-1.1.8-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.8)
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
 
@@ -22,7 +22,7 @@ Topic `aap.sokere.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-søkere.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-s%C3%B8kere.yml)
 
 ```kotlin
-implementation("no.nav.aap.avro:vedtak:1.1.5")
+implementation("no.nav.aap.avro:vedtak:1.1.8")
 ```
 
 <details>
