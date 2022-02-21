@@ -44,29 +44,26 @@ jobs:
           semver=${next_tag%"$suffix"}
           echo "semver=$(echo $semver)" >> $GITHUB_ENV
 
-#      - name: Publish avro schema ${{ env.semver }}
-#        uses: gradle/gradle-build-action@v2
-#        with:
-#          arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
-#        env:
-#          GITHUB_ACTOR: ${{ github.actor }}
-#          GITHUB_TOKEN: ${{ github.token }}
+      #      - name: Publish avro schema ${{ env.semver }}
+      #        uses: gradle/gradle-build-action@v2
+      #        with:
+      #          arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
+      #        env:
+      #          GITHUB_ACTOR: ${{ github.actor }}
+      #          GITHUB_TOKEN: ${{ github.token }}
 
-#      - name: Push tag ${{ steps.next_tag.outputs.version }}
-#        run: |
-#          git config --local user.name ${{ github.actor }}
-#          git tag "${{ steps.next_tag.outputs.version }}"
-#          git push --force-with-lease --tags
+      #      - name: Push tag ${{ steps.next_tag.outputs.version }}
+      #        run: |
+      #          git config --local user.name ${{ github.actor }}
+      #          git tag "${{ steps.next_tag.outputs.version }}"
+      #          git push --force-with-lease --tags
 
       - name: Update badge on line 4 in README.md
         shell: bash
         run: |
           TEMPLATE="[![Generic badge](https://img.shields.io/badge/vedtak-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
           VEDTAK_BADGE=$(printf "$TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
-          
-#          sed -i '4s/.*/$VEDTAK_BADGE/' README.md
           sed -i '4s/.*/$VEDTAK_BADGE/' README.md
-          
           echo $VEDTAK_BADGE
           echo $README.md
 
