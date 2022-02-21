@@ -63,7 +63,7 @@ jobs:
         run: |
           TEMPLATE="[![Generic badge](https://img.shields.io/badge/vedtak-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
           VEDTAK_BADGE=$(printf "$TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
-          sed -i.bak 's/.*vedtak-.*-blue.svg.*/$VEDTAK_BADGE/' README.md
+          sed -i 's/.*vedtak-.*-blue.svg.*/$(echo $VEDTAK_BADGE)/' README.md
           echo $VEDTAK_BADGE
           echo ""
           cat README.md
