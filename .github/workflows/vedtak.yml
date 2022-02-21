@@ -44,30 +44,26 @@ jobs:
           semver=${next_tag%"$suffix"}
           echo "semver=$(echo $semver)" >> $GITHUB_ENV
 
-      #      - name: Publish avro schema ${{ env.semver }}
-      #        uses: gradle/gradle-build-action@v2
-      #        with:
-      #          arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
-      #        env:
-      #          GITHUB_ACTOR: ${{ github.actor }}
-      #          GITHUB_TOKEN: ${{ github.token }}
+      - name: Publish avro schema ${{ env.semver }}
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
 
-      #      - name: Push tag ${{ steps.next_tag.outputs.version }}
-      #        run: |
-      #          git config --local user.name ${{ github.actor }}
-      #          git tag "${{ steps.next_tag.outputs.version }}"
-      #          git push --force-with-lease --tags
+      - name: Push tag ${{ steps.next_tag.outputs.version }}
+        run: |
+          git config --local user.name ${{ github.actor }}
+          git tag "${{ steps.next_tag.outputs.version }}"
+          git push --force-with-lease --tags
 
-      - name: Update badge on line 4 in README.md
+      - name: Update vedtak version badge in README.md
         shell: bash
         run: |
           TEMPLATE="[![Generic badge](https://img.shields.io/badge/vedtak-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
           BADGE=$(printf "$TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
           sed -i -e "s|.*vedtak-.*-blue.svg.*|$BADGE|g" README.md
-          echo "badge: $BADGE"
-          echo "README.md"
-          cat README.md
-
-#          git add README.md
-#          git commit -m "Update version badges"
-#          git push --force-with-lease
+          git add README.md
+          git commit -m "Update version badges"
+          git push --force-with-lease
