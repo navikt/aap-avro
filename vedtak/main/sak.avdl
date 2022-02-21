@@ -1,10 +1,12 @@
 @namespace("no.nav.aap.avro.vedtak.v1")
 protocol SakV1 {
 	import idl "vilkarsvurdering.avdl";
+	import idl "vurderingAvBeregningsdato.avdl";
 
 	record Sak {
 		array<Vilkarsvurdering> vilkarsvurderinger;
 		union{null, date} vurderingsdato;
+		union{null, VurderingAvBeregningsdato} vurderingAvBeregningsdato = null;
 		string tilstand;
 	}
 }

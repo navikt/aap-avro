@@ -1,0 +1,11 @@
+@namespace("no.nav.aap.avro.vedtak.v1")
+protocol VurderingAvBeregningsdatoV1 {
+	record LosningVurderingAvBeregningsdato {
+		date beregningsdato;
+	}
+
+	record VurderingAvBeregningsdato {
+		string tilstand;
+		union{null, LosningVurderingAvBeregningsdato} losningVurderingAvBeregningsdato = null;
+	}
+}
