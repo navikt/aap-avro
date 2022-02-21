@@ -64,6 +64,8 @@ jobs:
           TEMPLATE="[![Generic badge](https://img.shields.io/badge/vedtak-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
           BADGE=$(printf "$TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
           sed -i -e "s|.*vedtak-.*-blue.svg.*|$BADGE|g" README.md
+          sed -i -e "s|implementation("no.nav.aap.avro:medlem:.*|implementation("no.nav.aap.avro:medlem:${{ env.semver }}")|g" README.md
+          sed -i -e "s|implementation("no.nav.aap.avro:vedtak:.*|implementation("no.nav.aap.avro:medlem:${{ env.semver }}")|g" README.md
           git add README.md
           git commit -m "Update version badges"
           git push --force-with-lease

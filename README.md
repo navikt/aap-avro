@@ -10,7 +10,7 @@
 #### Medlemskap
 
 Topic `aap.medlem.v1` &nbsp;&nbsp;&nbsp;&nbsp;
-Definition [topic-medlem.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-medlem.yml) </br>
+Definition [topic-medlem.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-medlem.yml) <br/>
 
 ```kotlin
 implementation("no.nav.aap.avro:medlem:1.1.3")
@@ -52,22 +52,23 @@ repositories {
 
 ## 🚧 Development
 
-Separate artifacts will be built for each topic schema. 
-This is to avoid _breaking changes_ for unrelated implementations.
+- Build with `./gradlew assemble` to build all the schemas
+- Build with `./gradlew vedtak:assemble` to build a specific schema
+
+Separate artifacts will be built for each schema to avoid _breaking_ unrelated implementations.
 
 * Changes in [/medlem](/medlem) will trigger a **new** version of medlem schema on **commit**.
 * Changes in [/vedtak](/vedtak) will trigger a **new** version of vedtak schema on **commit**.
 
 #### Semantic Versioning
-SemVer is used for automatic updates through e.g. dependabot.
-It will also allow differing between _major_ (breaking changes), _minor_ and _patch_ releases.
-Versions will be deduced through tags with format `<major>.<minor>.<patch>-<schema>` 
 
-##### Example 
-Tag `1.1.5-vedtak` is used by the `vedtak` workflow to find its previous version, 
-and will strip its `postfix` to upgrade to the next semantic version.
-If your commit contains the term `minor` or `major` the respectively semver will be upgraded.
-No special term will default to `patch`.
+SemVer is used to power dependabot and other automatic tooling. <br/>
+Semantic version: `<major>.<minor>.<patch>` <br/>
+Associated git tag: `<major>.<minor>.<patch>-<schema>` <br/>
 
 #### Auto update README.md
-A shell script will replace specific line numbers in the README.md file with the updated badge.
+
+The workflow will automatically update the version badge in this README using `sed`
+```shell
+sed -i -e "s|search_string|replaced_string|g" README.md
+```
