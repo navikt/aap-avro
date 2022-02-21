@@ -61,7 +61,7 @@ jobs:
       - name: Update medlem version badge in README.md
         shell: bash
         run: |
-          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/medlem-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
+          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/medlem-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=%s)"
           BADGE=$(printf "$BADGE_TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
           sed -i -e "s|.*medlem-.*-blue.svg.*|$BADGE|g" README.md
           
