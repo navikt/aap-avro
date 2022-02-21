@@ -1,6 +1,6 @@
 # AAP Avro Skjemaer
 
-[![Generic badge](https://img.shields.io/badge/medlem-1.1.4-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.4)
+[![Generic badge](https://img.shields.io/badge/medlem-1.1.5-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.5)
 [![Generic badge](https://img.shields.io/badge/vedtak-1.1.8-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.8)
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
@@ -13,7 +13,7 @@ Topic `aap.medlem.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-medlem.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-medlem.yml) <br/>
 
 ```kotlin
-implementation("no.nav.aap.avro:medlem:1.1.4")
+implementation("no.nav.aap.avro:medlem:1.1.5")
 ```
 
 #### Søker (internal domain)
