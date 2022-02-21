@@ -65,7 +65,7 @@ jobs:
           VEDTAK_BADGE=$(printf "$TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
           sed -i '4s/.*/$VEDTAK_BADGE/' README.md
           echo $VEDTAK_BADGE
-          echo $README.md
+          cat README.md
 
 #          git add README.md
 #          git commit -m "Update version badges"
