@@ -1,9 +1,8 @@
-# AAP Avro Skjemaer
-
-[![Generic badge](https://img.shields.io/badge/medlem-1.1.5-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.5)
-[![Generic badge](https://img.shields.io/badge/vedtak-1.1.10-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.10)
+![img](logo.jpg)
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
+[![Generic badge](https://img.shields.io/badge/medlem-1.1.5-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.5)
+[![Generic badge](https://img.shields.io/badge/vedtak-1.1.10-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.10)
 
 ## 📚 Usage
 
@@ -69,6 +68,7 @@ Associated git tag: `<major>.<minor>.<patch>-<schema>` <br/>
 #### Auto update README.md
 
 The workflow will automatically update the version badge in this README using `sed`
+
 ```shell
 sed -i -e "s|search_string|replaced_string|g" README.md
 ```
