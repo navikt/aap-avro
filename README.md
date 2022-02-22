@@ -6,7 +6,7 @@
 
 ## 📚 Usage
 
-#### Medlemskap
+#### Medlemskap (LovMe)
 
 Topic `aap.medlem.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-medlem.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-medlem.yml) <br/>
