@@ -47,7 +47,7 @@ jobs:
       - name: Publish avro schema ${{ env.semver }}
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
+          arguments: clean vedtak:assemble -Pversion=${{ env.semver }} vedtak:publish --no-daemon
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
