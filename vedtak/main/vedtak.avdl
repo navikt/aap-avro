@@ -1,0 +1,29 @@
+@namespace("no.nav.aap.avro.vedtak.v1")
+protocol VedtakV1 {
+	import idl "inntekt.avdl";
+
+	record Vedtak {
+		boolean innvilget;
+		Inntektsgrunnlag inntektsgrunnlag;
+		local_timestamp_ms soknadstidspunkt;
+		date vedtaksdato;
+		date virkningsdato;
+	}
+
+	record Inntektsgrunnlag {
+		date beregningsdato;
+		array<InntektsgrunnlagForAr> inntekterSiste3Kalenderar;
+		date fodselsdato;
+		date sisteKalenderar;
+		double grunnlagsfaktor;
+	}
+
+	record InntektsgrunnlagForAr {
+		date ar;
+		array<Inntekt> inntekter;
+		double belopForJustering;
+		double belopJustertFor6G;
+		boolean erBelopJustertFor6G;
+		double grunnlagsfaktor;
+	}
+}

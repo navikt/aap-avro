@@ -2,11 +2,13 @@
 protocol SakV1 {
 	import idl "vilkarsvurdering.avdl";
 	import idl "vurderingAvBeregningsdato.avdl";
+	import idl "vedtak.avdl";
 
 	record Sak {
 		array<Vilkarsvurdering> vilkarsvurderinger;
 		union{null, date} vurderingsdato;
 		union{null, VurderingAvBeregningsdato} vurderingAvBeregningsdato = null;
 		string tilstand;
+		union{null, Vedtak} vedtak = null;
 	}
 }
