@@ -44,7 +44,7 @@ sourceSets["main"].java.srcDirs("$buildDir/generated/avro")
 publishing {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/navikt/${rootProject.name}")
+            url = uri("https://maven.pkg.github.com/navikt/aap-avro")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
@@ -57,7 +57,7 @@ publishing {
                 name.set("aap.avro-medlem")
                 artifactId = "medlem"
                 description.set("Avro skjema for kommunikasjon mellom aap og LovMe")
-                url.set("https://github.com/navikt/${rootProject.name}")
+                url.set("https://github.com/navikt/aap-avro")
                 licenses {
                     license {
                         name.set("MIT License")
@@ -65,9 +65,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/navikt/${rootProject.name}.git")
-                    developerConnection.set("scm:git:ssh://github.com/navikt/${rootProject.name}.git")
-                    url.set("https://github.com/navikt/${rootProject.name}")
+                    connection.set("scm:git:git://github.com/navikt/aap-avro.git")
+                    developerConnection.set("scm:git:ssh://github.com/navikt/aap-avro.git")
+                    url.set("https://github.com/navikt/aap-avro")
                 }
                 developers {
                     developer {
