@@ -26,7 +26,7 @@ jobs:
         uses: tj-actions/changed-files@v17
         id: changes
         with:
-          files: ${{ matrix.schema.name }}/*
+          path: ${{ matrix.schema.name }}
 
       - name: Continue ${{ matrix.schema.name }} -> ${{ steps.changes.outputs.files_changed }}
         if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
