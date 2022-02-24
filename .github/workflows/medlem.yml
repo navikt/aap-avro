@@ -5,6 +5,10 @@ on:
     branches: [ main ]
     paths: [ 'medlem/**', '.github/workflows/medlem.yml' ]
 
+env:
+  name: medlem
+  github_package_id: 1262528
+
 jobs:
   medlem:
     runs-on: ubuntu-latest
@@ -30,13 +34,13 @@ jobs:
           minor_pattern: minor
           bump_each_commit: true
           tag_prefix: ""
-          change_path: medlem
-          namespace: medlem
+          change_path: ${{ env.name }}
+          namespace: ${{ env.name }}
           format: "${major}.${minor}.${patch}"
 
       - name: Extract semantic version from next tag
         env:
-          suffix: -medlem
+          suffix: -${{ env.name }}
           next_tag: ${{ steps.next_tag.outputs.version }}
         run: |
           echo "next_tag: $next_tag"
@@ -44,10 +48,15 @@ jobs:
           semver=${next_tag%"$suffix"}
           echo "semver=$(echo $semver)" >> $GITHUB_ENV
 
+      - name: Assemble avro schema
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ${{ env.name }}:assemble
+
       - name: Publish avro schema ${{ env.semver }}
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: medlem:assemble -Pversion=${{ env.semver }} medlem:publish --no-daemon
+          arguments: ${{ env.name }}:publish -Pversion=${{ env.semver }} --no-daemon
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
@@ -58,16 +67,16 @@ jobs:
           git tag "${{ steps.next_tag.outputs.version }}"
           git push --force-with-lease --tags
 
-      - name: Update medlem version badge in README.md
+      - name: Update ${{ env.name }} version badge in README.md
         shell: bash
         run: |
-          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/medlem-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=%s)"
+          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/${{ env.name }}-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/${{ env.github_package_id }}?version=%s)"
           BADGE=$(printf "$BADGE_TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
-          sed -i -e "s|.*medlem-.*-blue.svg.*|$BADGE|g" README.md
+          sed -i -e "s|.*${{ env.name }}-.*-blue.svg.*|$BADGE|g" README.md
           
-          EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:medlem:%s\")"
+          EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:${{ env.name }}:%s\")"
           EXAMPLE=$(printf "$EXAMPLE_TEMPLATE" "${{ env.semver }}")
-          sed -i -e "s|implementation.*medlem.*|$EXAMPLE|g" README.md
+          sed -i -e "s|implementation.*${{ env.name }}.*|$EXAMPLE|g" README.md
           
           git add README.md
           git commit -m "Update version badges"
