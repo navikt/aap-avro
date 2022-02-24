@@ -4,7 +4,7 @@ import com.github.davidmc24.gradle.plugin.avro.GenerateAvroSchemaTask
 
 plugins {
     `maven-publish`
-    `java-library`
+    kotlin("jvm")
     id("com.github.davidmc24.gradle.plugin.avro")
 }
 
@@ -36,10 +36,15 @@ tasks {
         targetCompatibility = "17"
         source(generateAvro)
     }
+
+    withType<Test> {
+        useJUnitPlatform()
+    }
 }
 
 java.sourceSets["main"].java.srcDirs("main")
 sourceSets["main"].java.srcDirs("$buildDir/generated/avro")
+kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 publishing {
     repositories {
