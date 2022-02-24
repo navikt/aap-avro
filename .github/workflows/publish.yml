@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         schema:
           - { name: inntekter, github-package-id: 1271858 }
@@ -72,9 +73,18 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Update README.md
-        uses: navikt/aap-avro/.github/workflows/readme.yml@main
-        with:
-          schema: ${{ matrix.schema.name }}
-          version: ${{ env.semver }}
-          id: ${{ matrix.schema.github-package-id }}
+      - name: Update ${{ matrix.schema.name }} version badge in README.md
+        shell: bash
+        run: |
+          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/${{ matrix.schema.name }}-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/${{ matrix.schema.github-package-id }}}?version=%s)"
+          BADGE=$(printf "$BADGE_TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
+          sed -i -e "s|.*${{ matrix.schema.name }}-.*-blue.svg.*|$BADGE|g" README.md
+
+          EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:${{ matrix.schema.name }}:%s\")"
+          EXAMPLE=$(printf "$EXAMPLE_TEMPLATE" "${{ env.semver }}")
+          sed -i -e "s|implementation.*${{ matrix.schema.name }}.*|$EXAMPLE|g" README.md
+
+          git add README.md
+          git commit -m "Update version badges"
+          git pull --rebase
+          git push --force-with-lease
