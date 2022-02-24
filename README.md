@@ -4,7 +4,7 @@
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.7-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.7)
 [![Generic badge](https://img.shields.io/badge/sokere-1.1.18-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=1.1.18)
 [![Generic badge](https://img.shields.io/badge/manuell-0.0.4-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.4)
-[![Generic badge](https://img.shields.io/badge/inntekter-0.0.1-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.1)
+[![Generic badge](https://img.shields.io/badge/inntekter-0.0.1-blue.svg)](https://github.com/navikt/aap-avro/packages/1271858?version=0.0.1)
 
 ## 📚 Usage
 

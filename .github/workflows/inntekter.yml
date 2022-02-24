@@ -7,10 +7,10 @@ on:
 
 env:
   name: inntekter
-  github_package_id: 1262528
+  github_package_id: 1271858
 
 jobs:
-  medlem:
+  inntekter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout with tag history
