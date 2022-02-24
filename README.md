@@ -77,7 +77,7 @@ repositories {
 Separate artifacts will be built for each schema to avoid _breaking_ unrelated implementations.
 
 * Changes in [/medlem](/medlem) will trigger a **new** version of medlem schema on **commit**.
-* Changes in [/søkere](/søkere) will trigger a **new** version of søkere schema on **commit**.
+* Changes in [/sokere](/sokere) will trigger a **new** version of sokere schema on **commit**.
 
 #### Semantic Versioning
 

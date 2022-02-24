@@ -1,0 +1,81 @@
+name: Publish
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: [ README.md ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        schema:
+          - { name: inntekter, github-package-id: 1271858 }
+          - { name: manuell, github-package-id: 1271715 }
+          - { name: medlem, github-package-id: 1262528 }
+          - { name: sokere, github-package-id: 1271717 }
+    steps:
+      - name: Checkout with history
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Compare ${{ matrix.schema.name }} with last commit
+        uses: tj-actions/changed-files@v11.7
+        id: changes
+        with:
+          files: ${{ matrix.schema.name }}/*
+
+      - name: Continue if ${{ matrix.schema.name }} has changes
+        if: steps.changes.outputs.files_changed == 'false'
+        run: echo "no changes" && exit 1
+
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Create the next git tag for ${{ matrix.schema.name }}
+        uses: paulhatch/semantic-version@v4.0.3
+        id: next_tag
+        with:
+          bump_each_commit: true
+          tag_prefix: ""
+          change_path: ${{ matrix.schema.name }}
+          namespace: ${{ matrix.schema.name }}
+
+      - name: Remove suffix from tag ${{ steps.next_tag.outputs.version }}
+        run: echo "semver=$(echo ${next_tag%"$suffix"})" >> $GITHUB_ENV
+        env:
+          suffix: -${{ matrix.schema.name }}
+          next_tag: ${{ steps.next_tag.outputs.version }}
+
+      - name: Assemble ${{ matrix.schema.name }}
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ${{ matrix.schema.name }}:assemble
+
+      - name: Push tag ${{ steps.next_tag.outputs.version }}
+        run: |
+          git config --local user.name ${{ github.actor }}
+          git tag "${{ steps.next_tag.outputs.version }}"
+          git pull --rebase
+          git push --force-with-lease --tags
+
+      - name: Publish ${{ matrix.schema.name }}
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ${{ matrix.schema.name }}:publish -Pversion=${{ env.semver }} --no-daemon
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Update README.md
+        uses: navikt/aap-avro/.github/workflows/readme.yml
+        with:
+          schema: ${{ matrix.schema.name }}
+          version: ${{ env.semver }}
+          id: ${{ matrix.schema.github-package-id }}
+
