@@ -78,4 +78,3 @@ jobs:
           schema: ${{ matrix.schema.name }}
           version: ${{ env.semver }}
           id: ${{ matrix.schema.github-package-id }}
-
