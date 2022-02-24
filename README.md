@@ -4,6 +4,7 @@
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.7-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.7)
 [![Generic badge](https://img.shields.io/badge/sokere-1.1.17-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=1.1.17)
 [![Generic badge](https://img.shields.io/badge/manuell-0.0.4-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.4)
+[![Generic badge](https://img.shields.io/badge/inntekter-0.0.1-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.1)
 
 ## 📚 Usage
 
@@ -32,6 +33,15 @@ Definition [topic-manuell.yml](https://github.com/navikt/aap-vedtak/blob/main/.n
 
 ```kotlin
 implementation("no.nav.aap.avro:manuell:0.0.4")
+```
+
+#### Inntekter (internal domain)
+
+Topic `aap.inntekter.v1` &nbsp;&nbsp;&nbsp;&nbsp;
+Definition [topic-inntekter.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-inntekter.yml)
+
+```kotlin
+implementation("no.nav.aap.avro:inntekter:0.0.1")
 ```
 
 <details>

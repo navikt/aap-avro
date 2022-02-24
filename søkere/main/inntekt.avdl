@@ -5,8 +5,4 @@ protocol InntektV1 {
 		date inntektsmaned;
 		double belop;
 	}
-
-	record Inntekter {
-		array<Inntekt> inntekter;
-	}
 }

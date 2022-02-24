@@ -1,0 +1,23 @@
+@namespace("no.nav.aap.avro.inntekter.v1")
+protocol InntekterV1 {
+	record Inntekt {
+		string arbeidsgiver;
+		date inntektsmaned;
+		double belop;
+	}
+
+	record Request {
+		date fom;
+		date tom;
+	}
+
+	record Response {
+		array<Inntekt> inntekter;
+	}
+
+	record Inntekter {
+		string personident;
+		union{null, Request} request = null;
+		union{null, Response} response = null;
+	}
+}
