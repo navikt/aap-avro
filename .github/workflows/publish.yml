@@ -23,13 +23,13 @@ jobs:
           fetch-depth: 0
 
       - name: Compare ${{ matrix.schema.name }} with last commit
-        uses: tj-actions/changed-files@v11.7
+        uses: tj-actions/changed-files@v17
         id: changes
         with:
           files: ${{ matrix.schema.name }}/*
 
-      - name: Continue if ${{ matrix.schema.name }} has changes
-        if: steps.changes.outputs.files_changed == 'false'
+      - name: Continue ${{ matrix.schema.name }} -> ${{ steps.changes.outputs.files_changed }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         run: echo "no changes" && exit 1
 
       - uses: actions/setup-java@v2
@@ -73,7 +73,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Update README.md
-        uses: ./.github/workflows/readme.yml@main
+        uses: navikt/aap-avro/.github/workflows/readme.yml@main
         with:
           schema: ${{ matrix.schema.name }}
           version: ${{ env.semver }}
