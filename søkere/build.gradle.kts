@@ -54,8 +54,8 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             pom {
-                name.set("aap.avro-vedtak")
-                artifactId = "vedtak"
+                name.set("aap.avro-sokere")
+                artifactId = "sokere"
                 description.set("Avro skjema for aap domene")
                 url.set("https://github.com/navikt/aap-avro")
                 licenses {

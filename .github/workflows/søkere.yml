@@ -1,12 +1,12 @@
-name: Vedtak
+name: Søkere
 
 on:
   push:
     branches: [ main ]
-    paths: [ 'vedtak/**', '.github/workflows/vedtak.yml' ]
+    paths: [ 'søkere/**', '.github/workflows/søkere.yml' ]
 
 jobs:
-  vedtak:
+  sokere:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout with tag history
@@ -30,13 +30,13 @@ jobs:
           minor_pattern: minor
           bump_each_commit: true
           tag_prefix: ""
-          change_path: vedtak
-          namespace: vedtak
+          change_path: søkere
+          namespace: søkere
           format: "${major}.${minor}.${patch}"
 
       - name: Extract semantic version from next tag
         env:
-          suffix: -vedtak
+          suffix: -søkere
           next_tag: ${{ steps.next_tag.outputs.version }}
         run: |
           echo "next_tag: $next_tag"
@@ -47,12 +47,12 @@ jobs:
       - name: Assemble avro schema
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: vedtak:assemble
+          arguments: søkere:assemble
 
       - name: Publish avro schema ${{ env.semver }}
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: vedtak:publish -Pversion=${{ env.semver }} --no-daemon
+          arguments: søkere:publish -Pversion=${{ env.semver }} --no-daemon
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
@@ -63,16 +63,16 @@ jobs:
           git tag "${{ steps.next_tag.outputs.version }}"
           git push --force-with-lease --tags
 
-      - name: Update vedtak version badge in README.md
+      - name: Update søkere version badge in README.md
         shell: bash
         run: |
-          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/vedtak-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
+          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/søkere-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
           BADGE=$(printf "$BADGE_TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
-          sed -i -e "s|.*vedtak-.*-blue.svg.*|$BADGE|g" README.md
+          sed -i -e "s|.*søkere-.*-blue.svg.*|$BADGE|g" README.md
           
-          EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:vedtak:%s\")"
+          EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:sokere:%s\")"
           EXAMPLE=$(printf "$EXAMPLE_TEMPLATE" "${{ env.semver }}")
-          sed -i -e "s|implementation.*vedtak.*|$EXAMPLE|g" README.md
+          sed -i -e "s|implementation.*sokere.*|$EXAMPLE|g" README.md
           
           git add README.md
           git commit -m "Update version badges"

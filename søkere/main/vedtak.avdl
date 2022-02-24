@@ -1,4 +1,4 @@
-@namespace("no.nav.aap.avro.vedtak.v1")
+@namespace("no.nav.aap.avro.sokere.v1")
 protocol VedtakV1 {
 	import idl "inntekt.avdl";
 

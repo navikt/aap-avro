@@ -22,7 +22,7 @@ Topic `aap.sokere.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-søkere.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-s%C3%B8kere.yml)
 
 ```kotlin
-implementation("no.nav.aap.avro:vedtak:1.1.15")
+implementation("no.nav.aap.avro:sokere:1.1.15")
 ```
 
 #### Manuell oppgave (internal domain)
@@ -67,7 +67,7 @@ repositories {
 Separate artifacts will be built for each schema to avoid _breaking_ unrelated implementations.
 
 * Changes in [/medlem](/medlem) will trigger a **new** version of medlem schema on **commit**.
-* Changes in [/vedtak](/vedtak) will trigger a **new** version of vedtak schema on **commit**.
+* Changes in [/søkere](/søkere) will trigger a **new** version of søkere schema on **commit**.
 
 #### Semantic Versioning
 

@@ -1,4 +1,4 @@
-@namespace("no.nav.aap.avro.vedtak.v1")
+@namespace("no.nav.aap.avro.sokere.v1")
 protocol SakV1 {
 	import idl "vilkarsvurdering.avdl";
 	import idl "vurderingAvBeregningsdato.avdl";
