@@ -66,9 +66,9 @@ jobs:
       - name: Update søkere version badge in README.md
         shell: bash
         run: |
-          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/søkere-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=%s)"
+          BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/sokere-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=%s)"
           BADGE=$(printf "$BADGE_TEMPLATE" "${{ env.semver }}" "${{ env.semver }}")
-          sed -i -e "s|.*søkere-.*-blue.svg.*|$BADGE|g" README.md
+          sed -i -e "s|.*sokere-.*-blue.svg.*|$BADGE|g" README.md
           
           EXAMPLE_TEMPLATE="implementation(\"no.nav.aap.avro:sokere:%s\")"
           EXAMPLE=$(printf "$EXAMPLE_TEMPLATE" "${{ env.semver }}")
