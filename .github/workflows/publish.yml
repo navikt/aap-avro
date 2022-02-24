@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -32,7 +35,8 @@ jobs:
         uses: tj-actions/changed-files@v17
         id: changes
         with:
-          files: ${{ matrix.schema.name }}/*
+          files: |
+            ${{ matrix.schema.name }}/*
 
       - name: Create the next git tag for ${{ matrix.schema.name }}
         if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
