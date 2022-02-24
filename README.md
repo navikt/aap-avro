@@ -3,7 +3,7 @@
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.6-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.6)
 [![Generic badge](https://img.shields.io/badge/sokere-1.1.17-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=1.1.17)
-[![Generic badge](https://img.shields.io/badge/manuell-0.0.3-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.3)
+[![Generic badge](https://img.shields.io/badge/manuell-0.0.4-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.4)
 
 ## 📚 Usage
 
@@ -31,7 +31,7 @@ Topic `aap.manuell.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-manuell.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-manuell.yml)
 
 ```kotlin
-implementation("no.nav.aap.avro:manuell:0.0.3")
+implementation("no.nav.aap.avro:manuell:0.0.4")
 ```
 
 <details>
