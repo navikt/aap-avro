@@ -32,7 +32,7 @@ jobs:
         uses: tj-actions/changed-files@v17
         id: changes
         with:
-          path: ${{ matrix.schema.name }}
+          files: ${{ matrix.schema.name }}/*
 
       - name: Create the next git tag for ${{ matrix.schema.name }}
         if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
