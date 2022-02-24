@@ -23,22 +23,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
       - name: Compare ${{ matrix.schema.name }} with last commit
         uses: tj-actions/changed-files@v17
         id: changes
         with:
           path: ${{ matrix.schema.name }}
 
-      - name: Continue ${{ matrix.schema.name }} -> ${{ steps.changes.outputs.files_changed }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
-        run: exit 1
-
-      - uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'temurin'
-
       - name: Create the next git tag for ${{ matrix.schema.name }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         uses: paulhatch/semantic-version@v4.0.3
         id: next_tag
         with:
@@ -48,17 +45,20 @@ jobs:
           namespace: ${{ matrix.schema.name }}
 
       - name: Remove suffix from tag ${{ steps.next_tag.outputs.version }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         run: echo "semver=$(echo ${next_tag%"$suffix"})" >> $GITHUB_ENV
         env:
           suffix: -${{ matrix.schema.name }}
           next_tag: ${{ steps.next_tag.outputs.version }}
 
       - name: Assemble ${{ matrix.schema.name }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ${{ matrix.schema.name }}:assemble
 
       - name: Push tag ${{ steps.next_tag.outputs.version }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         run: |
           git config --local user.name ${{ github.actor }}
           git tag "${{ steps.next_tag.outputs.version }}"
@@ -66,6 +66,7 @@ jobs:
           git push --force-with-lease --tags
 
       - name: Publish ${{ matrix.schema.name }}
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ${{ matrix.schema.name }}:publish -Pversion=${{ env.semver }} --no-daemon
@@ -74,6 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Update ${{ matrix.schema.name }} version badge in README.md
+        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
         shell: bash
         run: |
           BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/${{ matrix.schema.name }}-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/${{ matrix.schema.github-package-id }}}?version=%s)"
