@@ -3,7 +3,7 @@
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.6-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.6)
 [![Generic badge](https://img.shields.io/badge/vedtak-1.1.15-blue.svg)](https://github.com/navikt/aap-avro/packages/1262527?version=1.1.15)
-[![Generic badge](https://img.shields.io/badge/manuell-0.0.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1262529?version=0.0.2)
+[![Generic badge](https://img.shields.io/badge/manuell-0.0.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.2)
 
 ## 📚 Usage
 
