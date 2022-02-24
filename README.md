@@ -1,7 +1,7 @@
 ![img](logo.jpg)
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
-[![Generic badge](https://img.shields.io/badge/medlem-1.1.7-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.7)
+[![Generic badge](https://img.shields.io/badge/medlem-1.1.8-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528?version=1.1.8)
 [![Generic badge](https://img.shields.io/badge/sokere-1.1.19-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=1.1.19)
 [![Generic badge](https://img.shields.io/badge/manuell-0.0.5-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715?version=0.0.5)
 [![Generic badge](https://img.shields.io/badge/inntekter-0.0.4-blue.svg)](https://github.com/navikt/aap-avro/packages/1271858?version=0.0.4)
@@ -14,7 +14,7 @@ Topic `aap.medlem.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-medlem.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-medlem.yml) <br/>
 
 ```kotlin
-implementation("no.nav.aap.avro:medlem:1.1.7")
+implementation("no.nav.aap.avro:medlem:1.1.8")
 ```
 
 #### Søker (internal domain)
