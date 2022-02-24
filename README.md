@@ -2,7 +2,7 @@
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
 [![Generic badge](https://img.shields.io/badge/medlem-1.1.11-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528}?version=1.1.11)
-[![Generic badge](https://img.shields.io/badge/sokere-1.1.20-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717?version=1.1.20)
+[![Generic badge](https://img.shields.io/badge/sokere-0.0.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717}?version=0.0.2)
 [![Generic badge](https://img.shields.io/badge/manuell-0.0.9-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715}?version=0.0.9)
 [![Generic badge](https://img.shields.io/badge/inntekter-0.0.8-blue.svg)](https://github.com/navikt/aap-avro/packages/1271858}?version=0.0.8)
 
@@ -23,7 +23,7 @@ Topic `aap.sokere.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-søkere.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-s%C3%B8kere.yml)
 
 ```kotlin
-implementation("no.nav.aap.avro:sokere:1.1.20")
+implementation("no.nav.aap.avro:sokere:0.0.2")
 ```
 
 #### Manuell oppgave (internal domain)
