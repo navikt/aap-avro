@@ -54,6 +54,13 @@ jobs:
         with:
           arguments: ${{ env.utf_name }}:assemble
 
+      - name: Push tag ${{ steps.next_tag.outputs.version }}
+        run: |
+          git config --local user.name ${{ github.actor }}
+          git tag "${{ steps.next_tag.outputs.version }}"
+          git pull --rebase
+          git push --force-with-lease --tags
+
       - name: Publish avro schema ${{ env.semver }}
         uses: gradle/gradle-build-action@v2
         with:
@@ -61,13 +68,6 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
-
-      - name: Push tag ${{ steps.next_tag.outputs.version }}
-        run: |
-          git config --local user.name ${{ github.actor }}
-          git tag "${{ steps.next_tag.outputs.version }}"
-          git pull --rebase
-          git push --force-with-lease --tags
 
       - name: Update ${{ env.utf_name }} version badge in README.md
         shell: bash
