@@ -39,7 +39,7 @@ jobs:
             ${{ matrix.schema.name }}/*
 
       - name: Create the next git tag for ${{ matrix.schema.name }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         uses: paulhatch/semantic-version@v4.0.3
         id: next_tag
         with:
@@ -49,20 +49,20 @@ jobs:
           namespace: ${{ matrix.schema.name }}
 
       - name: Remove suffix from tag ${{ steps.next_tag.outputs.version }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         run: echo "semver=$(echo ${next_tag%"$suffix"})" >> $GITHUB_ENV
         env:
           suffix: -${{ matrix.schema.name }}
           next_tag: ${{ steps.next_tag.outputs.version }}
 
       - name: Assemble ${{ matrix.schema.name }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ${{ matrix.schema.name }}:assemble
 
       - name: Push tag ${{ steps.next_tag.outputs.version }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         run: |
           git config --local user.name ${{ github.actor }}
           git tag "${{ steps.next_tag.outputs.version }}"
@@ -70,7 +70,7 @@ jobs:
           git push --force-with-lease --tags
 
       - name: Publish ${{ matrix.schema.name }}
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ${{ matrix.schema.name }}:publish -Pversion=${{ env.semver }} --no-daemon
@@ -79,7 +79,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Update ${{ matrix.schema.name }} version badge in README.md
-        if: steps.changes.outputs.any_changed == 'false' && steps.changes.outputs.any_deleted == 'false'
+        if: steps.changes.outputs.any_changed == 'true' || steps.changes.outputs.any_deleted == 'true'
         shell: bash
         run: |
           BADGE_TEMPLATE="[![Generic badge](https://img.shields.io/badge/${{ matrix.schema.name }}-%s-blue.svg)](https://github.com/navikt/aap-avro/packages/${{ matrix.schema.github-package-id }}}?version=%s)"
