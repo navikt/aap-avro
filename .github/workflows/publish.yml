@@ -9,7 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     concurrency:
-      group: ${{ github.ref }}
+      group: ${{ github.workflow }}-${{ matrix.schema.name }}-${{ github.ref }}
       cancel-in-progress: true
     strategy:
       fail-fast: false
