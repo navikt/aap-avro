@@ -4,7 +4,7 @@
 [![Generic badge](https://img.shields.io/badge/medlem-1.2.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1262528}?version=1.2.2)
 [![Generic badge](https://img.shields.io/badge/sokere-2.0.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1271717}?version=2.0.2)
 [![Generic badge](https://img.shields.io/badge/manuell-0.2.2-blue.svg)](https://github.com/navikt/aap-avro/packages/1271715}?version=0.2.2)
-[![Generic badge](https://img.shields.io/badge/inntekter-0.0.9-blue.svg)](https://github.com/navikt/aap-avro/packages/1271858}?version=0.0.9)
+[![Generic badge](https://img.shields.io/badge/inntekter-0.0.11-blue.svg)](https://github.com/navikt/aap-avro/packages/1271858}?version=0.0.11)
 
 ## 📚 Usage
 
@@ -41,7 +41,7 @@ Topic `aap.inntekter.v1` &nbsp;&nbsp;&nbsp;&nbsp;
 Definition [topic-inntekter.yml](https://github.com/navikt/aap-vedtak/blob/main/.nais/topic-inntekter.yml)
 
 ```kotlin
-implementation("no.nav.aap.avro:inntekter:0.0.9")
+implementation("no.nav.aap.avro:inntekter:0.0.11")
 ```
 
 <details>
