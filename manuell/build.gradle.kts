@@ -32,14 +32,9 @@ tasks {
         setOutputDir(file("$buildDir/generated/avro"))
     }
 
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-        source(generateAvro)
-    }
-
     withType<KotlinCompile> {
-        dependsOn(generateAvro)
+        kotlinOptions.jvmTarget = "17"
+        source(generateAvro)
     }
 
     withType<Test> {
@@ -47,7 +42,6 @@ tasks {
     }
 }
 
-java.sourceSets["main"].java.srcDirs("main")
 sourceSets["main"].java.srcDirs("$buildDir/generated/avro")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
@@ -64,7 +58,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             pom {
-                name.set("aap.avro-manuell")
+                name.set("Avro Skjema Manuell")
                 artifactId = "manuell"
                 description.set("Avro skjema for aap manuell oppgave")
                 url.set("https://github.com/navikt/aap-avro")
