@@ -32,14 +32,9 @@ tasks {
         setOutputDir(file("$buildDir/generated/avro"))
     }
 
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-        source(generateAvro)
-    }
-
     withType<KotlinCompile> {
-        dependsOn(generateAvro)
+        kotlinOptions.jvmTarget = "17"
+        source(generateAvro)
     }
 
     withType<Test> {
@@ -64,7 +59,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             pom {
-                name.set("aap.avro-sokere")
+                name.set("Avro Søkere")
                 artifactId = "sokere"
                 description.set("Avro skjema for aap domene")
                 url.set("https://github.com/navikt/aap-avro")
