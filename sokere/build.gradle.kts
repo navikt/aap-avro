@@ -42,7 +42,6 @@ tasks {
     }
 }
 
-java.sourceSets["main"].java.srcDirs("main")
 sourceSets["main"].java.srcDirs("$buildDir/generated/avro")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
