@@ -1,6 +1,7 @@
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroProtocolTask
 import com.github.davidmc24.gradle.plugin.avro.GenerateAvroSchemaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `maven-publish`
@@ -14,18 +15,18 @@ dependencies {
 }
 
 tasks {
-    val generateProtocol = task("generateProtocol", GenerateAvroProtocolTask::class) {
+    val generateProtocol = task<GenerateAvroProtocolTask>("generateProtocol") {
         source("main")
         setOutputDir(file("$buildDir/generated/avpr"))
     }
 
-    val generateSchema = task("generateSchema", GenerateAvroSchemaTask::class) {
+    val generateSchema = task<GenerateAvroSchemaTask>("generateSchema") {
         dependsOn(generateProtocol)
         source("$buildDir/generated/avpr")
         setOutputDir(file("$buildDir/generated/avsc"))
     }
 
-    val generateAvro = task("generateAvro", GenerateAvroJavaTask::class) {
+    val generateAvro = task<GenerateAvroJavaTask>("generateAvro") {
         dependsOn(generateSchema)
         source("$buildDir/generated/avsc")
         setOutputDir(file("$buildDir/generated/avro"))
@@ -35,6 +36,10 @@ tasks {
         sourceCompatibility = "17"
         targetCompatibility = "17"
         source(generateAvro)
+    }
+
+    withType<KotlinCompile> {
+        dependsOn(generateAvro)
     }
 
     withType<Test> {
