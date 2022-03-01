@@ -22,7 +22,7 @@ jobs:
           - { name: sokere, github-package-id: 1271717 }
     steps:
       - name: Checkout with history
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
