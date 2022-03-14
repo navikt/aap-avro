@@ -32,6 +32,7 @@ protocol VilkarsvurderingV1 {
 		string paragraf;
 		array<string> ledd;
 		string tilstand;
+		boolean maVurderesManuelt;
 		union{null, Losning_11_2} losning_11_2_manuell = null;
 		union{null, Losning_11_2} losning_11_2_maskinell = null;
 		union{null, Losning_11_3} losning_11_3_manuell = null;
