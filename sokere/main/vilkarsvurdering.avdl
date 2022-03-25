@@ -29,6 +29,7 @@ protocol VilkarsvurderingV1 {
 	}
 
 	record Vilkarsvurdering {
+		union{null, string} vilkarsvurderingsid = null;
 		string paragraf;
 		array<string> ledd;
 		string tilstand;

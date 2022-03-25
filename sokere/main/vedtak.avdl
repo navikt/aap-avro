@@ -3,6 +3,7 @@ protocol VedtakV1 {
 	import idl "inntekt.avdl";
 
 	record Vedtak {
+		union{null, string} vedtaksid = null;
 		boolean innvilget;
 		Inntektsgrunnlag inntektsgrunnlag;
 		local_timestamp_ms soknadstidspunkt = 0;

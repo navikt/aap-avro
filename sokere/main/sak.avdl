@@ -6,10 +6,12 @@ protocol SakV1 {
 
 	record Sakstype {
 		string type;
+		union{null, boolean} aktiv = null;
 		array<Vilkarsvurdering> vilkarsvurderinger;
 	}
 
 	record Sak {
+		union{null, string} saksid = null;
 		array<Sakstype> sakstyper;
 		union{null, date} vurderingsdato;
 		union{null, VurderingAvBeregningsdato} vurderingAvBeregningsdato = null;
