@@ -13,6 +13,7 @@ protocol SakV1 {
 		array<Sakstype> sakstyper;
 		union{null, date} vurderingsdato;
 		union{null, VurderingAvBeregningsdato} vurderingAvBeregningsdato = null;
+		union{null, local_timestamp_ms} soknadstidspunkt = null;
 		string tilstand;
 		union{null, Vedtak} vedtak = null;
 	}

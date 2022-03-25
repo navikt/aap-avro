@@ -5,7 +5,7 @@ protocol VedtakV1 {
 	record Vedtak {
 		boolean innvilget;
 		Inntektsgrunnlag inntektsgrunnlag;
-		local_timestamp_ms soknadstidspunkt;
+		local_timestamp_ms soknadstidspunkt = 0;
 		date vedtaksdato;
 		date virkningsdato;
 	}
