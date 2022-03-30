@@ -32,7 +32,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Compare ${{ matrix.schema.name }} with last commit
-        uses: tj-actions/changed-files@v17
+        uses: tj-actions/changed-files@v18.6
         id: changes
         with:
           files: |
