@@ -13,7 +13,9 @@ protocol ManuellV1 {
 	}
 
 	record Losning_11_5 {
-		int grad;
+		int grad = 0;
+		boolean kravOmNedsattArbeidsevneErOppfylt = false;
+		boolean nedsettelseSkyldesSykdomEllerSkade = false;
 	}
 
 	record Losning_11_6 {
