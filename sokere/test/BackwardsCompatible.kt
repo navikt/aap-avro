@@ -23,7 +23,7 @@ internal class BackwardsCompatible {
     @Test
     fun sak() {
         Sak.newBuilder()
-            .setVilkarsvurderinger(listOf())
+            .setSakstyper(listOf())
             .setVurderingsdato(null)
             .setTilstand("YEY")
             .build()
@@ -92,6 +92,7 @@ internal class BackwardsCompatible {
             .setParagraf("PARA")
             .setLedd(listOf())
             .setTilstand("NICE")
+            .setMaVurderesManuelt(true)
             .build()
 
         Losning_11_2.newBuilder().setErMedlem("JA").build()
@@ -101,6 +102,17 @@ internal class BackwardsCompatible {
         Losning_11_6.newBuilder().setErOppfylt(true).build()
         Losning_11_12_l1.newBuilder().setErOppfylt(true).build()
         Losning_11_29.newBuilder().setErOppfylt(true).build()
+    }
+
+    /**
+     * Failing test = breaking changes = major release
+     */
+    @Test
+    fun sakstype() {
+        Sakstype.newBuilder()
+            .setType("STANDARD")
+            .setVilkarsvurderinger(listOf())
+            .build()
     }
 
     /**

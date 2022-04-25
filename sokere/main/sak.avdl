@@ -4,10 +4,18 @@ protocol SakV1 {
 	import idl "vurderingAvBeregningsdato.avdl";
 	import idl "vedtak.avdl";
 
-	record Sak {
+	record Sakstype {
+		string type;
+		union{null, boolean} aktiv = null;
 		array<Vilkarsvurdering> vilkarsvurderinger;
+	}
+
+	record Sak {
+		union{null, string} saksid = null;
+		array<Sakstype> sakstyper;
 		union{null, date} vurderingsdato;
 		union{null, VurderingAvBeregningsdato} vurderingAvBeregningsdato = null;
+		union{null, local_timestamp_ms} soknadstidspunkt = null;
 		string tilstand;
 		union{null, Vedtak} vedtak = null;
 	}
