@@ -2,7 +2,7 @@
 
 [![img](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://nav-it.slack.com/app_redirect?channel=C02CW21TBKR)
 
-[![Release](https://jitpack.io/v/com.github.navikt/aap-avero.svg)](https://jitpack.io/#com.github.navikt/aap-avro)
+[![](https://jitpack.io/v/navikt/aap-avro.svg)](https://jitpack.io/#navikt/aap-avro)
 
 ## 📚 Usage
 
